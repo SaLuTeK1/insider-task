@@ -10,6 +10,8 @@ import {useNavigate} from "react-router-dom";
 const MyListPage = () => {
     const [uid, setUid] = useState<string>(null)
     const [todos, setTodos] = useState<IList[]>([]);
+    const [email, setEmail] = useState<string>(null)
+
     const [isCreating, setIsCreating] = useState<boolean>(false)
     const navigate = useNavigate();
     const {trigger} = useAppSelector(state => state.list);
@@ -17,10 +19,11 @@ const MyListPage = () => {
 
     useEffect(() => {
         setUid(localStorage.getItem('uid'))
+        setEmail(localStorage.getItem('email'))
         if (uid) {
-            getTodosForUser(uid).then(setTodos)
+            getTodosForUser(uid,email).then(setTodos)
         }
-    }, [uid, trigger]);
+    }, [uid, trigger, email]);
 
      const deleteList = async (id:string) =>{
          await deleteTodoById(id)

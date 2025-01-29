@@ -22,6 +22,7 @@ const LogInForm = () => {
         try {
             const res = await signInWithEmailAndPassword(auth, email, password);
             localStorage.setItem('uid', res.user.uid)
+            localStorage.setItem('email',email)
             dispatch(listAction.setLogin())
             navigate('/home'); // Перенаправлення після успішного логіну
         } catch (error) {

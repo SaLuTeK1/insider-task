@@ -2,13 +2,20 @@ import { DocumentData } from "firebase/firestore"; // Якщо використ�
 
 export interface IList {
     id:string
+    uid:string
     list_name: string;
     todos: IToDo[];
+    users:{
+        role:string
+        email:string
+    }[]
 }
 
 export interface IToDo{
+    id?:string
     todo_name: string;
     todo_description: string;
+    done?:boolean
 }
 
 // Тип для відповіді, якщо це масив

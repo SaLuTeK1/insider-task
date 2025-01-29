@@ -1,11 +1,11 @@
 import { arrayRemove, doc, updateDoc } from "firebase/firestore";
 import {db} from "../config/firebase"
-const removeTodo = async (listId: string, todoToRemove: { todo_name: string, todo_description: string }) => {
+import {IToDo} from "@/src/interfaces/todoInterface";
+export const removeTodo = async (listId: string, todo: IToDo) => {
     try {
         const listRef = doc(db, "todos", listId);
-
         await updateDoc(listRef, {
-            todos: arrayRemove(todoToRemove),
+            todos: arrayRemove(todo),
         });
 
         console.log("Todo removed successfully!");

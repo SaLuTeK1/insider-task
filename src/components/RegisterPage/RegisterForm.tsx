@@ -26,10 +26,12 @@ const RegisterForm = () => {
             console.log("User registered:", user);
             await saveUserData(email,user.uid,username)
             localStorage.setItem('uid', user.uid)
+            localStorage.setItem('email',email)
             navigate('/home')
 
         } catch (error) {
             console.error("Error registering user:", error);
+            setError('User already exists')
         }
     }
 
